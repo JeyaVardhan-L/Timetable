@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Timetable</title>
+    
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="Timetable">
+    <meta name="theme-color" content="#ffffff">
+
+    <link rel="apple-touch-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAYAAACtWK6eAAAABmJLR0QA/wD/AP+gvaeTAAAAeElEQVR4nO3BAQ0AAADCoPdPbQ8HFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/BhwjAABHQ8NuAAAAABJRU5ErkJggg==" style="background-color: black;">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='50' height='100' fill='black'/%3E%3Crect x='50' width='50' height='100' fill='white'/%3E%3C/svg%3E">
+    <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='50' height='100' fill='black'/%3E%3Crect x='50' width='50' height='100' fill='white'/%3E%3C/svg%3E">
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+        :root {
+            --bg-body: #f3f4f6;
+            --bg-surface: #ffffff;
+            --text-main: #111827;
+            --text-muted: #6b7280;
+            
+            /* Functional Palette */
+            --col-lab-bg: #eff6ff;     --col-lab-border: #3b82f6;
+            --col-core-bg: #ecfdf5;    --col-core-border: #10b981;
+            --col-math-bg: #fefce8;    --col-math-border: #eab308;
+            --col-hum-bg: #fff1f2;     --col-hum-border: #f43f5e;
+            --col-mech-bg: #f3e8ff;    --col-mech-border: #a855f7;
+            
+            --shadow-soft: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+            --shadow-hover: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -2px rgba(0, 0, 0, 0.04);
+        }
+
+        /* Reset & Base */
+        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        body {
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            margin: 0;
+            padding: 20px; /* Reduced for mobile */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            /* Safe area for iPhone notch */
+            padding-top: env(safe-area-inset-top);
+            padding-bottom: env(safe-area-inset-bottom);
+        }
+
+        /* Header */
+        header {
+            width: 100%;
+            max-width: 1500px;
+            display: flex;
+            flex-direction: column; /* Stack on mobile */
+            gap: 15px;
+            margin-bottom: 20px;
+            background: var(--bg-surface);
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: var(--shadow-soft);
+        }
+
+        @media (min-width: 600px) {
+            header { flex-direction: row; justify-content: space-between; align-items: center; }
+        }
+
+        .header-title h1 {
+            font-weight: 800;
+            font-size: 1.5rem;
+            margin: 0;
+            letter-spacing: -0.5px;
+            color: var(--text-main);
+        }
+        .header-title span { color: var(--text-muted); font-weight: 600; font-size: 0.85rem; }
+
+        .date-badge {
+            background: var(--text-main);
+            color: #fff;
+            padding: 8px 16px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        /* Scroll Container */
+        .container {
+            width: 100%;
+            max-width: 1500px;
+            overflow-x: auto;
+            border-radius: 24px;
+            background: var(--bg-surface);
+            padding: 15px;
+            box-shadow: var(--shadow-soft);
+            /* Smooth scrolling on mobile */
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none; /* Hide scrollbar Firefox */
+        }
+        .container::-webkit-scrollbar { display: none; /* Hide scrollbar Chrome/Safari */ }
+
+        table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 8px;
+            min-width: 1000px; /* Forces scroll on mobile */
+        }
+
+        th {
+            text-align: left;
+            padding: 10px;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            position: sticky;
+            top: 0;
+            background: var(--bg-surface);
+            z-index: 10;
+        }
+
+        td {
+            vertical-align: top;
+            height: 100px;
+            width: 10%;
+            padding: 0;
+        }
+
+        /* Card Design */
+        .card {
+            background: #fff;
+            border: 1px solid #e5e7eb;
+            border-radius: 14px;
+            height: 100%;
+            padding: 12px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.2s;
+        }
+        
+        td:active .card { transform: scale(0.98); } /* Click effect */
+
+        /* Category Styling */
+        .type-lab .card { background-color: var(--col-lab-bg); border: 1px solid rgba(59, 130, 246, 0.2); }
+        .type-lab .room-tag { color: var(--col-lab-border); border: 1px solid var(--col-lab-border); }
+        .type-lab .card::before { background: var(--col-lab-border); }
+
+        .type-core .card { background-color: var(--col-core-bg); border: 1px solid rgba(16, 185, 129, 0.2); }
+        .type-core .room-tag { color: var(--col-core-border); border: 1px solid var(--col-core-border); }
+        .type-core .card::before { background: var(--col-core-border); }
+
+        .type-math .card { background-color: var(--col-math-bg); border: 1px solid rgba(234, 179, 8, 0.2); }
+        .type-math .room-tag { color: var(--col-math-border); border: 1px solid var(--col-math-border); }
+        .type-math .card::before { background: var(--col-math-border); }
+
+        .type-hum .card { background-color: var(--col-hum-bg); border: 1px solid rgba(244, 63, 94, 0.2); }
+        .type-hum .room-tag { color: var(--col-hum-border); border: 1px solid var(--col-hum-border); }
+        .type-hum .card::before { background: var(--col-hum-border); }
+
+        .type-mech .card { background-color: var(--col-mech-bg); border: 1px solid rgba(168, 85, 247, 0.2); }
+        .type-mech .room-tag { color: var(--col-mech-border); border: 1px solid var(--col-mech-border); }
+        .type-mech .card::before { background: var(--col-mech-border); }
+
+        .card::before {
+            content: ''; position: absolute; left: 0; top: 12px; bottom: 12px;
+            width: 4px; border-radius: 0 4px 4px 0;
+        }
+
+        .subject { font-weight: 700; font-size: 0.85rem; color: var(--text-main); line-height: 1.25; margin-bottom: 4px; }
+        .room-tag { 
+            align-self: flex-start; font-size: 0.7rem; font-weight: 700; 
+            padding: 3px 8px; border-radius: 6px; background: #fff;
+        }
+
+        /* Day Column */
+        td:first-child { width: 50px; position: sticky; left: 0; z-index: 20; background: transparent; }
+        
+        .day-circle {
+            background: #f9fafb; color: var(--text-muted);
+            height: 100%; width: 100%;
+            display: flex; align-items: center; justify-content: center;
+            font-weight: 800; font-size: 1rem;
+            border-radius: 14px;
+            writing-mode: vertical-rl; transform: rotate(180deg);
+            box-shadow: 2px 0 5px rgba(0,0,0,0.05); /* Slight shadow for sticky overlap */
+        }
+
+        /* Active Day */
+        .active-day .day-circle {
+            background: var(--text-main); color: #fff;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+        
+        .active-day {
+            background-color: rgba(0,0,0,0.02); /* Highlight entire row */
+            border-radius: 12px;
+        }
+
+        /* Empty State */
+        .empty-card {
+            height: 100%; border-radius: 14px;
+            border: 2px dashed #e5e7eb; opacity: 0.4;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-title">
+            <h1>Weekly Schedule</h1>
+            <span>Fall Semester 2025</span>
+        </div>
+        <div class="date-badge" id="currentDate">Loading...</div>
+    </header>
+
+    <div class="container" id="scrollContainer">
+        <table>
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>08:00</th>
+                    <th>09:00</th>
+                    <th>10:00</th>
+                    <th>11:00</th>
+                    <th>12:00</th>
+                    <th>13:00</th>
+                    <th>14:00</th>
+                    <th>15:00</th>
+                    <th>16:00</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr data-day="Monday" id="row-Monday">
+                    <td><div class="day-circle">MON</div></td>
+                    <td class="type-hum"><div class="card"><span class="subject">Critical Thinking</span><span class="room-tag">ICT 518</span></div></td>
+                    <td class="type-core"><div class="card"><span class="subject">Algorithms (DAA)</span><span class="room-tag">ICT 604</span></div></td>
+                    <td class="type-math"><div class="card"><span class="subject">Calculus</span><span class="room-tag">ICT 505</span></div></td>
+                    <td class="type-core"><div class="card"><span class="subject">DBMS</span><span class="room-tag">ICT 218</span></div></td>
+                    <td><div class="empty-card"></div></td>
+                    <td><div class="empty-card"></div></td>
+                    <td colspan="2" class="type-lab"><div class="card"><span class="subject">OS Lab</span><span class="room-tag">ICT 209</span></div></td>
+                    <td><div class="empty-card"></div></td>
+                </tr>
+
+                <tr data-day="Tuesday" id="row-Tuesday">
+                    <td><div class="day-circle">TUE</div></td>
+                    <td colspan="2" class="type-lab"><div class="card"><span class="subject">DBMS Lab</span><span class="room-tag">ICT 203</span></div></td>
+                    <td class="type-math"><div class="card"><span class="subject">Calculus</span><span class="room-tag">ICT 505</span></div></td>
+                    <td class="type-core"><div class="card"><span class="subject">OS Theory</span><span class="room-tag">ICT 507</span></div></td>
+                    <td><div class="empty-card"></div></td>
+                    <td class="type-mech"><div class="card"><span class="subject">Ops Research</span><span class="room-tag">CB 411</span></div></td>
+                    <td><div class="empty-card"></div></td>
+                    <td><div class="empty-card"></div></td>
+                    <td><div class="empty-card"></div></td>
+                </tr>
+
+                <tr data-day="Wednesday" id="row-Wednesday">
+                    <td><div class="day-circle">WED</div></td>
+                    <td colspan="2" class="type-lab"><div class="card"><span class="subject">DAA Lab</span><span class="room-tag">ICT 104</span></div></td>
+                    <td class="type-core"><div class="card"><span class="subject">DBMS</span><span class="room-tag">ICT 517</span></div></td>
+                    <td class="type-math"><div class="card"><span class="subject">Calculus</span><span class="room-tag">ICT 505</span></div></td>
+                    <td><div class="empty-card"></div></td>
+                    <td><div class="empty-card"></div></td>
+                    <td><div class="empty-card"></div></td>
+                    <td><div class="empty-card"></div></td>
+                    <td><div class="empty-card"></div></td>
+                </tr>
+
+                <tr data-day="Thursday" id="row-Thursday">
+                    <td><div class="day-circle">THU</div></td>
+                    <td class="type-core"><div class="card"><span class="subject">OS Theory</span><span class="room-tag">ICT 507</span></div></td>
+                    <td class="type-core"><div class="card"><span class="subject">DBMS</span><span class="room-tag">ICT 517</span></div></td>
+                    <td class="type-core"><div class="card"><span class="subject">Algorithms (DAA)</span><span class="room-tag">ICT 111</span></div></td>
+                    <td class="type-math"><div class="card"><span class="subject">Calculus</span><span class="room-tag">ICT 505</span></div></td>
+                    <td><div class="empty-card"></div></td>
+                    <td class="type-mech"><div class="card"><span class="subject">Ops Research</span><span class="room-tag">CB 411</span></div></td>
+                    <td><div class="empty-card"></div></td>
+                    <td><div class="empty-card"></div></td>
+                    <td><div class="empty-card"></div></td>
+                </tr>
+
+                <tr data-day="Friday" id="row-Friday">
+                    <td><div class="day-circle">FRI</div></td>
+                    <td class="type-hum"><div class="card"><span class="subject">Env. Studies</span><span class="room-tag">ICT 328</span></div></td>
+                    <td class="type-hum"><div class="card"><span class="subject">Crit. Thinking</span><span class="room-tag">ICT 508</span></div></td>
+                    <td colspan="2" class="type-lab"><div class="card"><span class="subject">GCGC (Aptitude)</span><span class="room-tag">ICT 505</span></div></td>
+                    <td><div class="empty-card"></div></td>
+                    <td class="type-mech"><div class="card"><span class="subject">Ops Research</span><span class="room-tag">CB 411</span></div></td>
+                    <td class="type-core"><div class="card"><span class="subject">OS Theory</span><span class="room-tag">ICT 507</span></div></td>
+                    <td class="type-core"><div class="card"><span class="subject">Algorithms (DAA)</span><span class="room-tag">ICT 105</span></div></td>
+                    <td><div class="empty-card"></div></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+            const todayIndex = new Date().getDay();
+            const todayName = days[todayIndex];
+            
+            // 1. Highlight Active Day
+            const rows = document.querySelectorAll('tr[data-day]');
+            let activeRow = null;
+            rows.forEach(row => {
+                if(row.getAttribute('data-day') === todayName) {
+                    row.classList.add('active-day');
+                    activeRow = row;
+                }
+            });
+
+            // 2. Set Header Date
+            const dateOptions = { weekday: 'short', month: 'short', day: 'numeric' };
+            document.getElementById('currentDate').textContent = new Date().toLocaleDateString('en-US', dateOptions);
+
+            // 3. Auto-scroll to today on mobile
+            if (activeRow && window.innerWidth < 1000) {
+                activeRow.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+        });
+    </script>
+
+</body>
+</html>
