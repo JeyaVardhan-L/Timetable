@@ -1,364 +1,713 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>Timetable</title>
-    
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="default">
-    <meta name="apple-mobile-web-app-title" content="Timetable">
-    <meta name="theme-color" content="#ffffff">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<title>Sem V Timetable</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz48IS0tIFVwbG9hZGVkIHRvOiBTVkcgUmVwbywgd3d3LnN2Z3JlcG8uY29tLCBHZW5lcmF0b3I6IFNWRyBSZXBvIE1peGVyIFRvb2xzIC0tPg0KPHN2ZyB3aWR0aD0iODAwcHgiIGhlaWdodD0iODAwcHgiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4NCjxwYXRoIGQ9Ik0xNCAyMkgxMEM2LjIyODc2IDIyIDQuMzQzMTUgMjIgMy4xNzE1NyAyMC44Mjg0QzIgMTkuNjU2OSAyIDE3Ljc3MTIgMiAxNFYxMkMyIDguMjI4NzYgMiA2LjM0MzE1IDMuMTcxNTcgNS4xNzE1N0M0LjM0MzE1IDQgNi4yMjg3NiA0IDEwIDRIMTRDMTcuNzcxMiA0IDE5LjY1NjkgNCAyMC44Mjg0IDUuMTcxNTdDMjIgNi4zNDMxNSAyMiA4LjIyODc2IDIyIDEyVjE0QzIyIDE3Ljc3MTIgMjIgMTkuNjU2OSAyMC44Mjg0IDIwLjgyODRDMjAuMTc1MiAyMS40ODE2IDE5LjMwMDEgMjEuNzcwNiAxOCAyMS44OTg1IiBzdHJva2U9IiMxQzI3NEMiIHN0cm9rZS13aWR0aD0iMS41IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4NCjxwYXRoIGQ9Ik03IDRWMi41IiBzdHJva2U9IiMxQzI3NEMiIHN0cm9rZS13aWR0aD0iMS41IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4NCjxwYXRoIGQ9Ik0xNyA0VjIuNSIgc3Ryb2tlPSIjMUMyNzRDIiBzdHJva2Utd2lkdGg9IjEuNSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+DQo8cGF0aCBkPSJNMjEuNSA5SDE2LjYyNUgxMC43NU0yIDlINS44NzUiIHN0cm9rZT0iIzFDMjc0QyIgc3Ryb2tlLXdpZHRoPSIxLjUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPg0KPHBhdGggZD0iTTE4IDE3QzE4IDE3LjU1MjMgMTcuNTUyMyAxOCAxNyAxOEMxNi40NDc3IDE4IDE2IDE3LjU1MjMgMTYgMT7DMTYgMTYuNDQ3NyAxNi40NDc3IDE2IDE3IDE2QzE3LjU1MjMgMTYgMTggMTYuNDQ3NyAxOCAxN1oiIGZpbGw9IiMxQzI3NEMiLz4NCjxwYXRoIGQ9Ik0xOCAxM0MxOCAxMy41NTIzIDE3LjU1MjMgMTQgMTcgMTRDMTYuNDQ3NyAxNCAxNiAxMy41NTIzIDE2IDEzQzE2IDEyLjQ0NzcgMTYuNDQ3NyAxMiAxNyAxMkMxNy41NTIzIDEyIDE4IDEyLjQ0NzcgMTggMTNaIiBmaWxsPSIjMUMyNzRDIi8+DQo8cGF0aCBkPSJNMTMgMTdDMTMgMTcuNTUyMyAxMi41NTIzIDE4IDEyIDE4QzExLjQ0NzcgMTggMTEgMTcuNTUyMyAxMSAxN0MxMSAxNi40NDc3IDExLjQ0NzcgMTYgMTIgMTZDMTIuNTUyMyAxNiAxMyAxNi40NDc3IDEzIDE3WiIgZmlsbD0iIzFDMjc0QyIvPg0KPHBhdGggZD0iTTEzIDEzQzEzIDEzLjU1MjMgMTIuNTUyMyAxNCAxMiAxNEMxMS40NDc3IDE0IDExIDEzLjU1MjMgMTEgMTNDMTEgMTIuNDQ3NyAxMS40NDc3IDEyIDEyIDEyQzEyLjU1MjMgMTIgMTMgMTIuNDQ3NyAxMyAxM1oiIGZpbGw9IiMxQzI3NEMiLz4NCjxwYXRoIGQ9Ik04IDE3QzggMTcuNTUyMyA3LjU1MjI4IDE4IDcgMThDNi40NDc3MiAxOCA2IDE3LjU1MjMgNiAxN0M2IDE2LjQ0NzcgNi40NDc3MiAxNiA3IDE2QzcuNTUyMjggMTYgOCAxNi40NDc3IDggMTdaIiBmaWxsPSIjMUMyNzRDIi8+DQo8cGF0aCBkPSJNOCAxM0M4IDEzLjU1MjMgNy41NTIyOCAxNCA3IDE0QzYuNDQ3NzIgMTQgNiAxMy41NTIzIDYgMTNDNiAxMi40NDc3IDYuNDQ3NzIgMTIgNyAxMkM3LjU1MjI4IDEyIDggMTIuNDQ3NyA4IDEzWiIgZmlsbD0iIzFDMjc0QyIvPg0KPC9zdmc+">
+<link rel="preconnect" href="https://fonts.googleapis.com/">
+<link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ================================================================
+   RESET & BASE
+   ================================================================ */
+*{box-sizing:border-box;}
+html{-webkit-text-size-adjust:100%;}
+body{margin:0; -webkit-font-smoothing:antialiased; transition:background .25s ease, color .25s ease;}
 
-    <link rel="apple-touch-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAYAAACtWK6eAAAABmJLR0QA/wD/AP+gvaeTAAAAeElEQVR4nO3BAQ0AAADCoPdPbQ8HFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/BhwjAABHQ8NuAAAAABJRU5ErkJggg==" style="background-color: black;">
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='50' height='100' fill='black'/%3E%3Crect x='50' width='50' height='100' fill='white'/%3E%3C/svg%3E">
+/* ================================================================
+   SUBJECT PALETTES (ALPHA + OMEGA)
+   ================================================================ */
 
-    <style>
-        /* Loading Fonts: Quicksand (Soft) and Inter (Clean) */
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Quicksand:wght@500;600;700&family=JetBrains+Mono:wght@500&display=swap');
+/* Theme A (Minimal/Soft) */
+body[data-theme="A"] .s-cn   {--c:#0284c7; --b:#e9f4fb; --x:#075e8f;}
+body[data-theme="A"] .s-arvr {--c:#7c3aed; --b:#f2edfd; --x:#5b21b6;}
+body[data-theme="A"] .s-comm {--c:#d97706; --b:#fdf3e4; --x:#b45309;}
+body[data-theme="A"] .s-se   {--c:#059669; --b:#e7f7f0; --x:#066a4c;}
+body[data-theme="A"] .s-web  {--c:#db2777; --b:#fcecf4; --x:#9d174d;}
+body[data-theme="A"] .s-ml   {--c:#4f46e5; --b:#edecfd; --x:#3730a3;}
+body[data-theme="A"] .s-pi   {--c:#be123c; --b:#fbeaef; --x:#9f1239;}
 
-        /* ========================================= */
-        /* THEME: OMEGA (GIRL / PASTEL THEME)        */
-        /* ========================================= */
-        .theme-omega {
-            --bg-body: #fff0f5; /* Lavender Blush */
-            --bg-surface: #ffffff;
-            --text-main: #5d4037;
-            --text-muted: #9e827a;
-            --font-main: 'Quicksand', sans-serif;
-            --font-mono: 'Quicksand', sans-serif; /* Soft mono */
+body[data-theme="A"] .s-o-core {--c:#0ea5e9; --b:#e0f2fe; --x:#0369a1;}
+body[data-theme="A"] .s-o-lab  {--c:#a855f7; --b:#f3e8ff; --x:#7e22ce;}
+body[data-theme="A"] .s-o-math {--c:#10b981; --b:#ecfdf5; --x:#047857;}
+body[data-theme="A"] .s-o-elec {--c:#f97316; --b:#ffedd5; --x:#c2410c;}
+body[data-theme="A"] .s-o-oe   {--c:#64748b; --b:#f1f5f9; --x:#334155;}
 
-            /* Subject Colors (Pastel) */
-            --c-core:   #ffe4e1; --b-core:   #ffb6c1; --t-core:   #c71585; /* Misty Rose */
-            --c-lab:    #e6e6fa; --b-lab:    #dda0dd; --t-lab:    #800080; /* Lavender */
-            --c-math:   #fffacd; --b-math:   #f0e68c; --t-math:   #b8860b; /* Lemon Chiffon */
-            --c-elec:   #f0fff0; --b-elec:   #98fb98; --t-elec:   #228b22; /* Honeydew */
-            --c-oe:     #f5f5f5; --b-oe:     #dcdcdc; --t-oe:     #696969; /* Grey */
-            --c-break:  #fffaf0; --b-break:  #ffdead; --t-break:  #d2691e; /* Floral White */
+/* Theme B (Bold/Neo-brutalist) */
+body[data-theme="B"] .s-cn   {--c:#0EA5E9; --tx:#000; --sub:rgba(0,0,0,.62);}
+body[data-theme="B"] .s-arvr {--c:#8B5CF6; --tx:#fff; --sub:rgba(255,255,255,.85);}
+body[data-theme="B"] .s-comm {--c:#FB923C; --tx:#000; --sub:rgba(0,0,0,.62);}
+body[data-theme="B"] .s-se   {--c:#10B981; --tx:#000; --sub:rgba(0,0,0,.62);}
+body[data-theme="B"] .s-web  {--c:#EC4899; --tx:#fff; --sub:rgba(255,255,255,.85);}
+body[data-theme="B"] .s-ml   {--c:#6366F1; --tx:#fff; --sub:rgba(255,255,255,.85);}
+body[data-theme="B"] .s-pi   {--c:#E63946; --tx:#fff; --sub:rgba(255,255,255,.85);}
 
-            --active-btn-bg: #ff69b4;
-            --active-btn-text: #ffffff;
-            --header-shadow: 0 8px 20px rgba(255, 182, 193, 0.4);
-        }
+body[data-theme="B"] .s-o-core {--c:#38BDF8; --tx:#000; --sub:rgba(0,0,0,.62);}
+body[data-theme="B"] .s-o-lab  {--c:#C084FC; --tx:#000; --sub:rgba(0,0,0,.62);}
+body[data-theme="B"] .s-o-math {--c:#34D399; --tx:#000; --sub:rgba(0,0,0,.62);}
+body[data-theme="B"] .s-o-elec {--c:#FB923C; --tx:#000; --sub:rgba(0,0,0,.62);}
+body[data-theme="B"] .s-o-oe   {--c:#94A3B8; --tx:#000; --sub:rgba(0,0,0,.62);}
 
-        /* ========================================= */
-        /* THEME: ALPHA (CLEAN / TECH THEME)         */
-        /* ========================================= */
-        .theme-alpha {
-            --bg-body: #f1f5f9; /* Slate 100 */
-            --bg-surface: #ffffff;
-            --text-main: #0f172a;
-            --text-muted: #64748b;
-            --font-main: 'Inter', sans-serif;
-            --font-mono: 'JetBrains Mono', monospace;
 
-            /* Subject Colors (Tech) */
-            --c-core:   #e0f2fe; --b-core:   #38bdf8; --t-core:   #0369a1; /* Sky */
-            --c-lab:    #f3e8ff; --b-lab:    #c084fc; --t-lab:    #7e22ce; /* Purple */
-            --c-math:   #ecfdf5; --b-math:   #34d399; --t-math:   #047857; /* Emerald */
-            --c-elec:   #ffedd5; --b-elec:   #fb923c; --t-elec:   #c2410c; /* Orange */
-            --c-oe:     #f1f5f9; --b-oe:     #94a3b8; --t-oe:     #475569; /* Slate */
-            --c-break:  #f8fafc; --b-break:  #cbd5e1; --t-break:  #64748b; /* Grey */
+/* ================================================================
+   THEME A — Soft / Minimal
+   ================================================================ */
+body[data-theme="A"]{
+  background:#fbfbfd; color:#1a1d24;
+  font-family:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  padding:44px 28px 60px;
+}
 
-            --active-btn-bg: #0f172a;
-            --active-btn-text: #ffffff;
-            --header-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-        }
+/* Topbar / controls */
+body[data-theme="A"] .topbar{display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap; margin-bottom:26px;}
+body[data-theme="A"] h1{font-family:"Space Grotesk",sans-serif; font-weight:700; font-size:42px; letter-spacing:-1px; margin:0; line-height:1; color:#1a1d24;}
+body[data-theme="A"] h1 .dot{color:#027367;}
 
-        /* BASE STYLES */
-        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-        
-        body {
-            background-color: var(--bg-body); color: var(--text-main);
-            font-family: var(--font-main); margin: 0; padding: 20px;
-            display: flex; flex-direction: column; align-items: center; min-height: 100vh;
-            padding-top: env(safe-area-inset-top); padding-bottom: env(safe-area-inset-bottom);
-            transition: background 0.4s ease, color 0.4s ease;
-        }
+body[data-theme="A"] .controls{display:flex; align-items:center; gap:8px; flex-wrap:wrap;}
+body[data-theme="A"] .ctrl-btn{font-family:"Space Grotesk",sans-serif; font-weight:600; font-size:13px; border:1px solid #d1d5db; background:#fff; color:#6b7280; cursor:pointer; padding:7px 16px; border-radius:999px; transition:background .15s ease, color .15s ease, border-color .15s ease, box-shadow .15s ease; white-space:nowrap; display:inline-flex; align-items:center; gap:7px;}
+body[data-theme="A"] .ctrl-btn .btn-icon{font-size:14px; line-height:1;}
+body[data-theme="A"] .ctrl-btn:hover{border-color:#9ca3af; color:#1a1d24;}
+body[data-theme="A"] .ctrl-btn.active{background:#1a1d24; color:#fff; border-color:#1a1d24; box-shadow:0 2px 8px rgba(20,25,40,.18);}
 
-        /* HEADER */
-        header {
-            width: 100%; max-width: 1600px; margin-bottom: 25px;
-            background: var(--bg-surface); padding: 15px 25px; border-radius: 20px;
-            box-shadow: var(--header-shadow);
-            display: flex; flex-direction: row; justify-content: space-between; align-items: center;
-            transition: box-shadow 0.4s ease;
-        }
+/* Grid */
+body[data-theme="A"] .grid-wrap{overflow-x:auto; border-radius:16px; box-shadow:0 1px 3px rgba(20,25,40,.05),0 12px 30px rgba(20,25,40,.06); background:#fff; padding:6px 10px 14px;}
+body[data-theme="A"] table{border-collapse:separate; border-spacing:8px 5px; width:100%; min-width:1240px; table-layout:fixed;}
+body[data-theme="A"] col.day-col{width:116px;}
+body[data-theme="A"] th,body[data-theme="A"] td{padding:0; text-align:left;}
+body[data-theme="A"] thead th{background:#fff; font-family:"Space Grotesk",sans-serif; font-weight:600; font-size:12px; color:#6b7280; padding:14px 10px 10px; white-space:nowrap; text-align:center;}
+body[data-theme="A"] thead th .t{display:block; color:#1a1d24; font-size:13px;}
+body[data-theme="A"] thead th .ap{font-size:10px; letter-spacing:.5px; opacity:.7;}
+body[data-theme="A"] thead th.corner{text-align:left; padding-left:10px; color:#1a1d24; font-size:13px;}
+body[data-theme="A"] td.day{font-family:"Space Grotesk",sans-serif; font-weight:600; font-size:14px; padding:0 14px 0 10px; color:#1a1d24; white-space:nowrap; vertical-align:middle;}
+body[data-theme="A"] td.cell{padding:0; vertical-align:top; height:96px;}
+body[data-theme="A"] .chip{height:100%; border-radius:14px; padding:11px 12px; display:flex; flex-direction:column; gap:3px; justify-content:center; border:1px solid rgba(22,24,31,.06); border-left:3px solid var(--c,#ccc); background:linear-gradient(158deg,var(--b,#f4f4f6) 0%,#ffffff 130%); box-shadow:0 1px 2px rgba(22,24,31,.05),0 6px 14px -8px rgba(22,24,31,.18); transition:transform .13s ease,box-shadow .13s ease; overflow:hidden; min-width:0; cursor:pointer;}
+body[data-theme="A"] .chip:hover{transform:translateY(-3px); box-shadow:0 2px 4px rgba(22,24,31,.06),0 14px 26px -10px rgba(22,24,31,.28);}
+body[data-theme="A"] .chip.no-link:hover{transform:none; box-shadow:0 1px 2px rgba(22,24,31,.05),0 6px 14px -8px rgba(22,24,31,.18); cursor:default;}
+body[data-theme="A"] .chip .subj{font-weight:600; font-size:14px; color:var(--x,#333); line-height:1.25; overflow-wrap:break-word;}
+body[data-theme="A"] .chip .loc{font-size:11.5px; color:#6b7280; font-weight:500; letter-spacing:.2px;}
+body[data-theme="A"] .chip .tag{align-self:flex-start; font-size:9px; font-weight:700; letter-spacing:.7px; color:#fff; background:var(--c,#999); padding:1px 6px; border-radius:5px; margin-bottom:1px;}
+body[data-theme="A"] td.empty{height:96px;}
+body[data-theme="A"] td.empty::before{content:""; display:block; height:100%; border-radius:14px; border:1px dashed rgba(22,24,31,.12); background:repeating-linear-gradient(135deg,#fafafc,#fafafc 7px,#f3f4f7 7px,#f3f4f7 14px);}
+body[data-theme="A"] td.lunch{height:96px; text-align:center; vertical-align:middle; background:#f6f7f9; border-radius:14px;}
+body[data-theme="A"] td.lunch span{writing-mode:vertical-rl; transform:rotate(180deg); display:inline-block; font-family:"Space Grotesk",sans-serif; font-size:11px; font-weight:600; letter-spacing:3px; color:#9aa1ad; text-transform:uppercase;}
 
-        .header-info h1 { font-weight: 800; font-size: 1.2rem; margin: 0; letter-spacing: -0.5px; }
-        .header-info span { 
-            color: var(--text-muted); font-size: 0.8rem; font-weight: 600; 
-            margin-top: 4px; display: inline-block; opacity: 0.8;
-        }
+/* Mobile list — Theme A */
+body[data-theme="A"] .m-day{margin-top:16px;}
+body[data-theme="A"] .m-day:first-child{margin-top:0;}
+body[data-theme="A"] .m-dayname{font-family:"Space Grotesk",sans-serif; font-weight:700; font-size:14px; margin:0 0 8px; letter-spacing:.3px; color:#1a1d24; display:flex; align-items:center; gap:12px;}
+body[data-theme="A"] .m-dayname::after{content:""; flex:1; height:1px; background:#e6e8ee;}
+body[data-theme="A"] .m-list{display:flex; flex-direction:column; gap:6px;}
+body[data-theme="A"] .m-row{display:flex; align-items:stretch; background:linear-gradient(158deg,var(--b,#f4f4f6) 0%,#ffffff 130%); border:1px solid rgba(22,24,31,.06); border-left:3px solid var(--c,#ccc); border-radius:14px; overflow:hidden; box-shadow:0 1px 2px rgba(22,24,31,.05),0 6px 14px -8px rgba(22,24,31,.18); transition:transform .13s ease,box-shadow .13s ease; cursor:pointer;}
+body[data-theme="A"] .m-row:hover{transform:translateY(-2px); box-shadow:0 2px 4px rgba(22,24,31,.06),0 14px 26px -10px rgba(22,24,31,.28);}
+body[data-theme="A"] .m-row.no-link:hover{transform:none; box-shadow:0 1px 2px rgba(22,24,31,.05),0 6px 14px -8px rgba(22,24,31,.18); cursor:default;}
+body[data-theme="A"] .m-time{flex:none; width:85px; padding:7px 6px; display:flex; align-items:center; justify-content:center; text-align:center; font-family:"Space Grotesk",sans-serif; font-weight:600; font-size:10px; line-height:1.25; color:#6b7280; background:rgba(255,255,255,.45); border-right:1px solid rgba(22,24,31,.07);}
+body[data-theme="A"] .m-chip{flex:1; min-width:0; padding:7px 11px; display:flex; flex-direction:column; gap:2px; justify-content:center;}
+body[data-theme="A"] .m-chip .subj{font-weight:600; font-size:12.5px; color:var(--x,#333); line-height:1.2; overflow-wrap:break-word;}
+body[data-theme="A"] .m-chip .loc{font-size:10.5px; color:#6b7280; font-weight:500;}
+body[data-theme="A"] .m-chip .tag{align-self:flex-start; font-size:8px; font-weight:700; letter-spacing:.6px; color:#fff; background:var(--c,#999); padding:1px 5px; border-radius:4px; margin-bottom:1px;}
+body[data-theme="A"] .m-lunch{text-align:center; font-family:"Space Grotesk",sans-serif; font-size:9.5px; font-weight:600; letter-spacing:1.5px; text-transform:uppercase; color:#aab0bb; padding:6px; border:1px dashed #e6e8ee; border-radius:8px; background:#fafbfc;}
 
-        /* SYMBOL SWITCHER */
-        .profile-toggle {
-            display: flex; gap: 10px; background: rgba(0,0,0,0.03); 
-            padding: 5px; border-radius: 50px;
-        }
-        .toggle-btn {
-            border: none; width: 45px; height: 45px; border-radius: 50%;
-            font-family: 'Times New Roman', serif; font-weight: 700; font-size: 1.5rem;
-            background: transparent; color: var(--text-muted); cursor: pointer;
-            display: flex; align-items: center; justify-content: center;
-            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-        }
-        .toggle-btn.active { 
-            background: var(--active-btn-bg); color: var(--active-btn-text); 
-            transform: scale(1.1); box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-        }
+/* Popup — Theme A */
+body[data-theme="A"] .cm-card{background:#fff; border-radius:22px; max-width:392px; width:100%; overflow:hidden; box-shadow:0 30px 80px -12px rgba(16,19,26,.45); animation:cmInA .22s cubic-bezier(.2,.85,.25,1);}
+@keyframes cmInA{from{opacity:0;transform:translateY(14px) scale(.97);}to{opacity:1;transform:none;}}
+body[data-theme="A"] .cm-close{position:absolute; top:15px; right:15px; z-index:3; border:none; background:rgba(255,255,255,.22); color:#fff; width:30px; height:30px; border-radius:50%; font-size:16px; line-height:1; cursor:pointer; display:flex; align-items:center; justify-content:center; backdrop-filter:blur(4px); transition:background .15s ease;}
+body[data-theme="A"] .cm-close:hover{background:rgba(255,255,255,.4);}
+body[data-theme="A"] .cm-hero{position:relative; background:var(--c,#333); color:#fff; padding:26px 26px 24px; overflow:hidden;}
+body[data-theme="A"] .cm-hero::after{content:""; position:absolute; right:-40px; top:-50px; width:150px; height:150px; border-radius:50%; background:rgba(255,255,255,.10);}
+body[data-theme="A"] .cm-pill{position:relative; z-index:1; display:inline-block; font-family:"Space Grotesk",sans-serif; font-size:11px; font-weight:600; letter-spacing:.6px; background:rgba(255,255,255,.22); color:#fff; padding:5px 11px; border-radius:999px;}
+body[data-theme="A"] .cm-title{position:relative; z-index:1; font-family:"Space Grotesk",sans-serif; font-weight:700; font-size:23px; line-height:1.16; margin:13px 0 0; color:#fff; padding-right:26px;}
+body[data-theme="A"] .cm-cat{position:relative; z-index:1; font-size:12.5px; color:rgba(255,255,255,.82); font-weight:500; margin-top:8px;}
+body[data-theme="A"] .cm-meta{padding:6px 24px 2px;}
+body[data-theme="A"] .cm-row{display:flex; align-items:center; gap:14px; padding:13px 0; border-bottom:1px solid #e6e8ee;}
+body[data-theme="A"] .cm-meta .cm-row:last-child{border-bottom:none;}
+body[data-theme="A"] .cm-ic{flex:none; width:38px; height:38px; border-radius:11px; background:var(--b,#f4f4f6); display:flex; align-items:center; justify-content:center; color:var(--c,#333);}
+body[data-theme="A"] .cm-ic svg{width:19px; height:19px; fill:none; stroke:currentColor; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round;}
+body[data-theme="A"] .cm-row .lab{font-size:10.5px; font-weight:700; text-transform:uppercase; letter-spacing:.7px; color:#6b7280;}
+body[data-theme="A"] .cm-row .val{font-size:14.5px; font-weight:600; color:#1a1d24; margin-top:2px; line-height:1.25;}
+body[data-theme="A"] .cm-foot{padding:14px 24px 24px;}
+body[data-theme="A"] .cm-cta{display:flex; align-items:center; justify-content:center; gap:8px; width:100%; font-family:"Space Grotesk",sans-serif; font-weight:600; font-size:14px; padding:14px; border-radius:14px; text-decoration:none; border:none; cursor:pointer; transition:filter .15s ease;}
+body[data-theme="A"] .cm-cta.live{background:var(--c,#027367); color:#fff;}
+body[data-theme="A"] .cm-cta.live:hover{filter:brightness(.93);}
+body[data-theme="A"] .cm-cta.disabled{background:#f3f4f6; color:#9aa1ad; cursor:default;}
+body[data-theme="A"] .cm-cta svg{width:16px; height:16px; fill:none; stroke:currentColor; stroke-width:2; stroke-linecap:round; stroke-linejoin:round;}
 
-        /* TABLE CONTAINER */
-        .container {
-            width: 100%; max-width: 1600px; overflow-x: auto;
-            border-radius: 20px; background: var(--bg-surface); padding: 15px;
-            box-shadow: var(--header-shadow); scrollbar-width: none;
-        }
-        .container::-webkit-scrollbar { display: none; }
+/* ================================================================
+   THEME B — Bold / Neo-brutalist
+   ================================================================ */
+body[data-theme="B"]{
+  background-color:#F3EFE6;
+  background-image:radial-gradient(rgba(0,0,0,.08) 1.4px, transparent 1.5px);
+  background-size:20px 20px;
+  color:#000;
+  font-family:"Space Grotesk",sans-serif;
+  padding:46px 28px 64px;
+}
 
-        table { width: 100%; border-collapse: separate; border-spacing: 12px; min-width: 1200px; }
-        
-        /* HEADERS */
-        th {
-            text-align: left; padding: 10px; font-size: 0.75rem; color: var(--text-muted);
-            text-transform: uppercase; font-weight: 700; position: sticky; top: 0;
-            background: var(--bg-surface); z-index: 10; font-family: var(--font-mono);
-            border-bottom: 2px solid var(--bg-body);
-        }
+/* Topbar / controls */
+body[data-theme="B"] .topbar{display:flex; align-items:center; justify-content:space-between; gap:14px; flex-wrap:wrap; margin-bottom:28px; padding-bottom:22px;}
+body[data-theme="B"] h1{font-family:"Archivo Black",sans-serif; font-weight:400; font-size:46px; letter-spacing:-1px; line-height:1; margin:0; color:#000;}
+body[data-theme="B"] h1 .dot{color:#027367;}
 
-        /* CELLS */
-        td { vertical-align: top; height: 110px; width: 10%; padding: 0; }
-        
-        /* Day Column */
-        td:first-child { width: 50px; min-width: 50px; position: sticky; left: 0; z-index: 20; background: transparent; }
-        .day-circle {
-            background: var(--bg-body); color: var(--text-muted); height: 100%; width: 100%;
-            display: flex; align-items: center; justify-content: center; 
-            font-weight: 800; font-size: 0.9rem; letter-spacing: 1px;
-            border-radius: 12px; writing-mode: vertical-rl; transform: rotate(180deg);
-        }
+body[data-theme="B"] .controls{display:flex; align-items:center; gap:8px; flex-wrap:wrap;}
+body[data-theme="B"] .ctrl-btn{font-family:"Space Grotesk",sans-serif; font-weight:700; font-size:13px; border:2px solid #000; background:#fff; color:#000; cursor:pointer; padding:8px 18px; transition:background .1s ease, box-shadow .1s ease, transform .1s ease; white-space:nowrap; box-shadow:3px 3px 0 0 #000; display:inline-flex; align-items:center; gap:7px;}
+body[data-theme="B"] .ctrl-btn .btn-icon{font-size:14px; line-height:1;}
+body[data-theme="B"] .ctrl-btn:hover{background:#F5F5F0; transform:translate(-1px,-1px); box-shadow:4px 4px 0 0 #000;}
+body[data-theme="B"] .ctrl-btn:active{transform:translate(1px,1px); box-shadow:1px 1px 0 0 #000;}
+body[data-theme="B"] .ctrl-btn.active{background:#FFDB33; color:#000;}
 
-        /* CARDS */
-        .card {
-            background: #fff; border-radius: 16px; height: 100%;
-            padding: 12px; display: flex; flex-direction: column; justify-content: space-between;
-            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
-            position: relative; overflow: hidden;
-            border: 1px solid rgba(0,0,0,0.03);
-        }
-        
-        /* Hover Effect */
-        .card:hover { transform: scale(1.05) translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.08); z-index: 5; }
+/* Grid */
+body[data-theme="B"] .grid-wrap{overflow-x:auto; background:#fff; border:2px solid #000; box-shadow:8px 8px 0 0 #000; padding:18px;}
+body[data-theme="B"] table{border-collapse:separate; border-spacing:8px; width:100%; min-width:1240px; table-layout:fixed;}
+body[data-theme="B"] col.day-col{width:116px;}
+body[data-theme="B"] th,body[data-theme="B"] td{padding:0;}
+body[data-theme="B"] thead th{font-family:"Space Grotesk",sans-serif; font-weight:700; font-size:12px; color:#000; background:#fff; border:2px solid #000; box-shadow:2px 2px 0 0 #000; height:54px; padding:0 4px; text-align:center; white-space:nowrap; letter-spacing:.2px;}
+body[data-theme="B"] thead th .t{display:block; font-size:13px; color:#000;}
+body[data-theme="B"] thead th .ap{font-size:10px; font-weight:600; color:#5A5A5A; letter-spacing:.4px;}
+body[data-theme="B"] thead th.corner{background:#FFF3C4; font-size:11px; color:#000;}
+body[data-theme="B"] td.day{font-family:"Space Grotesk",sans-serif; font-weight:700; font-size:14px; color:#000; background:#FFDB33; border:2px solid #000; box-shadow:2px 2px 0 0 #000; text-align:center; vertical-align:middle; white-space:nowrap; height:88px;}
+body[data-theme="B"] td.cell{vertical-align:top; height:88px;}
+body[data-theme="B"] .chip{height:100%; min-height:84px; background:var(--c); color:var(--tx,#fff); border:2px solid #000; box-shadow:2px 2px 0 0 #000; padding:10px 12px; display:flex; flex-direction:column; gap:5px; justify-content:center; cursor:pointer; transition:transform .1s ease,box-shadow .1s ease;}
+body[data-theme="B"] .chip:hover{transform:translate(-2px,-2px); box-shadow:3px 3px 0 0 #000;}
+body[data-theme="B"] .chip.no-link:hover{transform:none; box-shadow:2px 2px 0 0 #000; cursor:default;}
+body[data-theme="B"] .chip:active{transform:translate(1px,1px); box-shadow:1px 1px 0 0 #000;}
+body[data-theme="B"] .chip.no-link:active{transform:none; box-shadow:2px 2px 0 0 #000;}
+body[data-theme="B"] .chip .subj{font-weight:700; font-size:13.5px; line-height:1.18; color:var(--tx,#fff); overflow-wrap:break-word;}
+body[data-theme="B"] .chip .loc{font-size:11px; font-weight:600; color:var(--sub,rgba(255,255,255,.85)); letter-spacing:.3px; text-transform:uppercase;}
+body[data-theme="B"] .chip .tag, body[data-theme="B"] .m-chip .tag{align-self:flex-start; background:#000; color:#fff; font-size:9.5px; font-weight:700; letter-spacing:.6px; padding:2px 6px; text-transform:uppercase;}
+body[data-theme="B"] td.empty{height:88px; background:#F4F4EF; border:2px solid #E4E3DB; box-shadow:none;}
+body[data-theme="B"] td.lunch{background:#EBEBEB; border:2px solid #000; box-shadow:2px 2px 0 0 #000; text-align:center; vertical-align:middle;}
+body[data-theme="B"] td.lunch span{writing-mode:vertical-rl; transform:rotate(180deg); display:inline-block; font-family:"Space Grotesk",sans-serif; font-size:16px; font-weight:700; letter-spacing:4px; color:#000; text-transform:uppercase;}
 
-        /* Typography */
-        .subject { font-weight: 700; font-size: 0.85rem; line-height: 1.3; margin-bottom: 4px; }
-        .room-tag { 
-            align-self: flex-start; font-size: 0.7rem; font-weight: 700; 
-            padding: 4px 10px; border-radius: 20px; background: rgba(255,255,255,0.7); 
-            font-family: var(--font-mono); opacity: 0.9;
-        }
+/* Mobile list — Theme B */
+body[data-theme="B"] .m-day{margin-top:26px;}
+body[data-theme="B"] .m-day:first-child{margin-top:0;}
+body[data-theme="B"] .m-dayname{font-family:"Archivo Black",sans-serif; font-weight:400; font-size:17px; color:#000; margin:0 0 12px; display:inline-block; border-bottom:4px solid #E63946; padding-bottom:2px;}
+body[data-theme="B"] .m-list{display:flex; flex-direction:column; gap:12px;}
+body[data-theme="B"] .m-row{display:flex; align-items:stretch; background:var(--c); color:var(--tx,#fff); border:2px solid #000; box-shadow:3px 3px 0 0 #000; cursor:pointer; transition:transform .1s ease,box-shadow .1s ease;}
+body[data-theme="B"] .m-row:hover{transform:translate(-2px,-2px); box-shadow:5px 5px 0 0 #000;}
+body[data-theme="B"] .m-row.no-link:hover{transform:none; box-shadow:3px 3px 0 0 #000; cursor:default;}
+body[data-theme="B"] .m-row:active{transform:translate(1px,1px); box-shadow:1px 1px 0 0 #000;}
+body[data-theme="B"] .m-row.no-link:active{transform:none; box-shadow:3px 3px 0 0 #000;}
+body[data-theme="B"] .m-time{flex:none; width:92px; display:flex; align-items:center; justify-content:center; text-align:center; font-weight:700; font-size:10.5px; line-height:1.25; color:var(--tx,#fff); background:rgba(0,0,0,.14); border-right:2px solid #000; padding:12px 8px; text-transform:uppercase; letter-spacing:.3px;}
+body[data-theme="B"] .m-chip{flex:1; min-width:0; padding:12px 14px; display:flex; flex-direction:column; gap:4px; justify-content:center;}
+body[data-theme="B"] .m-chip .subj{font-weight:700; font-size:14.5px; color:var(--tx,#fff); line-height:1.2; overflow-wrap:break-word;}
+body[data-theme="B"] .m-chip .loc{font-size:11.5px; font-weight:600; color:var(--sub,rgba(255,255,255,.85)); text-transform:uppercase; letter-spacing:.3px;}
+body[data-theme="B"] .m-lunch{text-align:center; font-family:"Space Grotesk",sans-serif; font-size:11px; font-weight:700; letter-spacing:2px; color:#000; text-transform:uppercase; padding:11px; background:#EBEBEB; border:2px solid #000; box-shadow:2px 2px 0 0 #000;}
 
-        /* DYNAMIC COLOR CLASSES */
-        .t-core .card { background: var(--c-core); border: 2px solid var(--b-core); }
-        .t-core .subject { color: var(--t-core); } .t-core .room-tag { color: var(--t-core); }
+/* Popup — Theme B */
+body[data-theme="B"] .cm-card{background:#fff; border:2px solid #000; box-shadow:10px 10px 0 1px #000; max-width:396px; width:100%; animation:cmInB .12s ease-out;}
+@keyframes cmInB{from{opacity:0;transform:translateY(12px);}to{opacity:1;transform:none;}}
+body[data-theme="B"] .cm-close{position:absolute; top:16px; right:16px; z-index:3; width:30px; height:30px; background:#fff; color:#000; border:2px solid #000; box-shadow:2px 2px 0 0 #000; font-size:16px; line-height:1; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:transform .1s ease,box-shadow .1s ease;}
+body[data-theme="B"] .cm-close:hover{transform:translate(-1px,-1px); box-shadow:3px 3px 0 0 #000;}
+body[data-theme="B"] .cm-hero{position:relative; background:var(--c,#333); color:var(--tx,#fff); border-bottom:2px solid #000; padding:22px 22px 20px;}
+body[data-theme="B"] .cm-pill{display:inline-block; background:#000; color:#fff; font-family:"Space Grotesk",sans-serif; font-size:11px; font-weight:700; letter-spacing:.6px; padding:4px 9px;}
+body[data-theme="B"] .cm-title{font-family:"Archivo Black",sans-serif; font-weight:400; font-size:20px; line-height:1.16; margin:13px 0 0; color:var(--tx,#fff); padding-right:30px;}
+body[data-theme="B"] .cm-cat{font-size:11px; font-weight:700; color:var(--sub,rgba(255,255,255,.85)); margin-top:9px; text-transform:uppercase; letter-spacing:.6px;}
+body[data-theme="B"] .cm-meta{padding:18px 22px 4px;}
+body[data-theme="B"] .cm-row{display:flex; align-items:center; gap:13px; padding-bottom:16px;}
+body[data-theme="B"] .cm-ic{flex:none; width:38px; height:38px; background:var(--c,#eee); color:var(--tx,#000); border:2px solid #000; display:flex; align-items:center; justify-content:center;}
+body[data-theme="B"] .cm-ic svg{width:18px; height:18px; fill:none; stroke:currentColor; stroke-width:2; stroke-linecap:round; stroke-linejoin:round;}
+body[data-theme="B"] .cm-row .lab{font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:.7px; color:#5A5A5A;}
+body[data-theme="B"] .cm-row .val{font-size:14px; font-weight:600; color:#000; margin-top:2px; line-height:1.25;}
+body[data-theme="B"] .cm-foot{padding:16px 22px 22px; border-top:2px solid #000;}
+body[data-theme="B"] .cm-cta{display:flex; align-items:center; justify-content:center; gap:8px; width:100%; font-family:"Space Grotesk",sans-serif; font-weight:700; font-size:14px; padding:13px; text-decoration:none; cursor:pointer; border:2px solid #000; background:#FFDB33; color:#000; box-shadow:3px 3px 0 0 #000; transition:transform .1s ease,box-shadow .1s ease;}
+body[data-theme="B"] .cm-cta:hover{transform:translate(-1px,-1px); box-shadow:4px 4px 0 0 #000;}
+body[data-theme="B"] .cm-cta:active{transform:translate(2px,2px); box-shadow:1px 1px 0 0 #000;}
+body[data-theme="B"] .cm-cta svg{width:16px; height:16px; fill:none; stroke:currentColor; stroke-width:2.2; stroke-linecap:round; stroke-linejoin:round;}
+body[data-theme="B"] .cm-cta.disabled{background:#F5F5F5; color:#AEAEAE; border-color:#BFBFBF; box-shadow:none; cursor:default;}
+body[data-theme="B"] .cm-cta.disabled:hover{transform:none; box-shadow:none;}
 
-        .t-lab .card { background: var(--c-lab); border: 2px solid var(--b-lab); }
-        .t-lab .subject { color: var(--t-lab); } .t-lab .room-tag { color: var(--t-lab); }
+/* ================================================================
+   SHARED LAYOUT — view & profile switching
+   ================================================================ */
+.wrap{max-width:1320px; margin:0 auto;}
+.profile-section{display:none;}
+body[data-profile="alpha"] #profile-alpha {display:block;}
+body[data-profile="omega"] #profile-omega {display:block;}
 
-        .t-math .card { background: var(--c-math); border: 2px solid var(--b-math); }
-        .t-math .subject { color: var(--t-math); } .t-math .room-tag { color: var(--t-math); }
+.grid-wrap{display:none;}
+.mobile{display:none;}
 
-        .t-elec .card { background: var(--c-elec); border: 2px solid var(--b-elec); }
-        .t-elec .subject { color: var(--t-elec); } .t-elec .room-tag { color: var(--t-elec); }
+body[data-view="grid"] .profile-section[style*="display: block"] .grid-wrap, 
+body[data-view="grid"] #profile-alpha .grid-wrap,
+body[data-view="grid"] #profile-omega .grid-wrap {display:block;}
 
-        .t-oe .card { background: var(--c-oe); border: 2px solid var(--b-oe); }
-        .t-oe .subject { color: var(--t-oe); } .t-oe .room-tag { color: var(--t-oe); }
+body[data-view="list"] .profile-section[style*="display: block"] .mobile,
+body[data-view="list"] #profile-alpha .mobile,
+body[data-view="list"] #profile-omega .mobile {display:block;}
 
-        .t-break .card { 
-            background: var(--c-break); border: 2px dashed var(--b-break);
-            justify-content: center; align-items: center; opacity: 0.7;
-        }
-        .t-break .subject { color: var(--t-break); text-align: center; font-style: italic; }
+/* Ensure hidden profiles stay hidden despite view overrides */
+body[data-profile="alpha"] #profile-omega .grid-wrap,
+body[data-profile="alpha"] #profile-omega .mobile,
+body[data-profile="omega"] #profile-alpha .grid-wrap,
+body[data-profile="omega"] #profile-alpha .mobile {display:none !important;}
 
-        /* Active Day */
-        .active-day .day-circle { background: var(--active-btn-bg); color: #fff; }
-        .active-day { background-color: rgba(0,0,0,0.015); border-radius: 12px; }
-        .empty-card { height: 100%; border-radius: 12px; border: 2px dashed var(--b-oe); opacity: 0.3; }
+/* Modal overlay */
+.cm-overlay{position:fixed; inset:0; background:rgba(16,19,26,.5); backdrop-filter:blur(3px); -webkit-backdrop-filter:blur(3px); display:none; align-items:center; justify-content:center; padding:20px; z-index:50;}
+.cm-overlay.open{display:flex;}
+.cm-card{position:relative;}
 
-        /* View Logic */
-        .schedule-body { display: none; }
-        .schedule-body.active-view { display: table-row-group; }
-    </style>
+/* ================================================================
+   RESPONSIVE
+   ================================================================ */
+@media (max-width:520px){
+  body[data-theme="A"]{padding:24px 14px 44px;}
+  body[data-theme="B"]{padding:24px 14px 46px;}
+  body[data-theme="A"] h1{font-size:28px;}
+  body[data-theme="B"] h1{font-size:30px;}
+  .topbar{gap:8px;}
+  .controls{gap:6px;}
+}
+
+@media (max-width:380px){
+  body[data-theme="A"] .ctrl-btn{padding:6px 10px; font-size:11.5px;}
+  body[data-theme="B"] .ctrl-btn{padding:7px 12px; font-size:12px;}
+}
+
+@media (prefers-reduced-motion:reduce){
+  .chip,.m-row,.cm-card,.ctrl-btn,.cm-cta,.cm-close{transition:none; animation:none;}
+}
+</style>
 </head>
-<body class="theme-omega">
+<body>
+<div class="wrap">
 
-    <header>
-        <div class="header-info">
-            <h1>Timetable</h1>
-            <span id="currentDate">Loading...</span>
-        </div>
-        
-        <div class="profile-toggle">
-            <button class="toggle-btn active" onclick="setProfile('omega')" id="btn-omega" title="Omega">Ω</button>
-            <button class="toggle-btn" onclick="setProfile('alpha')" id="btn-alpha" title="Alpha">α</button>
-        </div>
-    </header>
+  <div class="topbar">
+    <h1>Timetable<span class="dot">.</span></h1>
+    <div class="controls">
+      <button type="button" class="ctrl-btn" id="profileBtn" aria-pressed="false">
+        <span class="btn-icon" id="profileIcon">α</span>
+        <span id="profileLabel">Alpha</span>
+      </button>
+      <button type="button" class="ctrl-btn" id="viewBtn" aria-pressed="false">
+        <span class="btn-icon" id="viewIcon">⊞</span>
+        <span id="viewLabel">Grid</span>
+      </button>
+      <button type="button" class="ctrl-btn" id="themeBtn" aria-pressed="false">
+        <span class="btn-icon" id="themeIcon">◆</span>
+        <span id="themeLabel">Bold</span>
+      </button>
+    </div>
+  </div>
 
-    <div class="container">
-        <table>
-            <thead id="time-headers">
-                </thead>
-            
-            <tbody id="schedule-omega" class="schedule-body active-view">
-                <tr data-day="Monday">
-                    <td><div class="day-circle">MON</div></td>
-                    <td class="t-core"><div class="card"><span class="subject">Microwave Engg</span><span class="room-tag">B1-203</span></div></td>
-                    <td class="t-core"><div class="card"><span class="subject">Comp. Comm (CCN)</span><span class="room-tag">B1-203</span></div></td>
-                    <td class="t-elec"><div class="card"><span class="subject">Elec. Measure (EMI)</span><span class="room-tag">B1-102</span></div></td>
-                    <td class="t-break"><div class="card"><span class="subject">LUNCH</span></div></td>
-                    <td class="t-math"><div class="card"><span class="subject">Microprocessors</span><span class="room-tag">B1-203</span></div></td>
-                    <td class="t-oe"><div class="card"><span class="subject">Const. of India</span><span class="room-tag">B1-203</span></div></td>
-                    <td class="t-oe"><div class="card"><span class="subject">Library</span></div></td>
-                    <td class="t-oe"><div class="card"><span class="subject">Sports</span></div></td>
-                </tr>
-                <tr data-day="Tuesday">
-                    <td><div class="day-circle">TUE</div></td>
-                    <td class="t-math"><div class="card"><span class="subject">Microprocessors</span><span class="room-tag">B1-203</span></div></td>
-                    <td class="t-core"><div class="card"><span class="subject">Comp. Comm (CCN)</span><span class="room-tag">B1-203</span></div></td>
-                    <td class="t-core"><div class="card"><span class="subject">Microwave Engg</span><span class="room-tag">B1-203</span></div></td>
-                    <td class="t-break"><div class="card"><span class="subject">LUNCH</span></div></td>
-                    <td colspan="3" class="t-lab"><div class="card"><span class="subject">Networking Lab</span><span class="room-tag">B2-303</span></div></td>
-                    <td class="t-elec"><div class="card"><span class="subject">Elec. Measure (EMI)</span><span class="room-tag">B1-102</span></div></td>
-                </tr>
-                <tr data-day="Wednesday">
-                    <td><div class="day-circle">WED</div></td>
-                    <td class="t-elec"><div class="card"><span class="subject">Elec. Measure (EMI)</span><span class="room-tag">B1-102</span></div></td>
-                    <td colspan="3" class="t-lab"><div class="card"><span class="subject">Micro/Microwave Lab</span><span class="room-tag">B2-304</span></div></td>
-                    <td class="t-break"><div class="card"><span class="subject">LUNCH</span></div></td>
-                    <td class="t-core"><div class="card"><span class="subject">Comp. Comm (CCN)</span><span class="room-tag">B1-203</span></div></td>
-                    <td class="t-math"><div class="card"><span class="subject">Microprocessors</span><span class="room-tag">B1-203</span></div></td>
-                    <td class="t-oe"><div class="card"><span class="subject">Open Elective-II</span></div></td>
-                </tr>
-                <tr data-day="Thursday">
-                    <td><div class="day-circle">THU</div></td>
-                    <td class="t-elec"><div class="card"><span class="subject">Elec. Measure (EMI)</span><span class="room-tag">B1-102</span></div></td>
-                    <td class="t-math"><div class="card"><span class="subject">Microprocessors</span><span class="room-tag">B1-203</span></div></td>
-                    <td class="t-core"><div class="card"><span class="subject">Microwave Engg</span><span class="room-tag">B1-203</span></div></td>
-                    <td class="t-break"><div class="card"><span class="subject">LUNCH</span></div></td>
-                    <td colspan="3" class="t-lab"><div class="card"><span class="subject">Micro/Microwave Lab</span><span class="room-tag">B1-303</span></div></td>
-                    <td class="t-oe"><div class="card"><span class="subject">Open Elective-II</span></div></td>
-                </tr>
-                <tr data-day="Friday">
-                    <td><div class="day-circle">FRI</div></td>
-                    <td class="t-oe"><div class="card"><span class="subject">Const. of India</span><span class="room-tag">B1-203</span></div></td>
-                    <td class="t-core"><div class="card"><span class="subject">Microwave Engg</span><span class="room-tag">B1-203</span></div></td>
-                    <td class="t-core"><div class="card"><span class="subject">Comp. Comm (CCN)</span><span class="room-tag">B1-203</span></div></td>
-                    <td class="t-break"><div class="card"><span class="subject">LUNCH</span></div></td>
-                    <td colspan="3" class="t-lab"><div class="card"><span class="subject">Soft Skills Lab</span><span class="room-tag">B6-303</span></div></td>
-                    <td class="t-oe"><div class="card"><span class="subject">Open Elective-II</span></div></td>
-                </tr>
-            </tbody>
-
-            <tbody id="schedule-alpha" class="schedule-body">
-                <tr data-day="Monday">
-                    <td><div class="day-circle">MON</div></td>
-                    <td colspan="2" class="t-oe"><div class="card"><span class="subject">App. Comm. (GCGC)</span><span class="room-tag">ICT 227</span></div></td>
-                    <td colspan="2" class="t-lab"><div class="card"><span class="subject">Web App Lab</span><span class="room-tag">ICT 104</span></div></td>
-                    <td class="t-elec"><div class="card"><span class="subject">Raspberry PI</span><span class="room-tag">ICT 417</span></div></td>
-                    <td><div class="empty-card"></div></td>
-                    <td class="t-core"><div class="card"><span class="subject">Comp Networks</span><span class="room-tag">ICT 224</span></div></td>
-                    <td><div class="empty-card"></div></td>
-                    <td><div class="empty-card"></div></td>
-                </tr>
-                <tr data-day="Tuesday">
-                    <td><div class="day-circle">TUE</div></td>
-                    <td class="t-core"><div class="card"><span class="subject">Web App</span><span class="room-tag">ICT 106</span></div></td>
-                    <td class="t-core"><div class="card"><span class="subject">Soft Engg</span><span class="room-tag">ICT 107</span></div></td>
-                    <td class="t-elec"><div class="card"><span class="subject">AR & VR</span><span class="room-tag">ICT 111</span></div></td>
-                    <td class="t-core"><div class="card"><span class="subject">Comp Networks</span><span class="room-tag">ICT 224</span></div></td>
-                    <td class="t-elec"><div class="card"><span class="subject">Raspberry PI</span><span class="room-tag">ICT 417</span></div></td>
-                    <td><div class="empty-card"></div></td>
-                    <td colspan="2" class="t-lab"><div class="card"><span class="subject">ML Lab</span><span class="room-tag">ICT 214</span></div></td>
-                    <td><div class="empty-card"></div></td>
-                </tr>
-                <tr data-day="Wednesday">
-                    <td><div class="day-circle">WED</div></td>
-                    <td colspan="2" class="t-lab"><div class="card"><span class="subject">Soft Engg Lab</span><span class="room-tag">ICT 203</span></div></td>
-                    <td colspan="2" class="t-lab"><div class="card"><span class="subject">AR & VR Lab</span><span class="room-tag">ICT 213</span></div></td>
-                    <td class="t-elec"><div class="card"><span class="subject">Raspberry PI</span><span class="room-tag">ICT 417</span></div></td>
-                    <td><div class="empty-card"></div></td>
-                    <td class="t-core"><div class="card"><span class="subject">Web App</span><span class="room-tag">ICT 106</span></div></td>
-                    <td class="t-elec"><div class="card"><span class="subject">AR & VR</span><span class="room-tag">ICT 111</span></div></td>
-                    <td><div class="empty-card"></div></td>
-                </tr>
-                <tr data-day="Thursday">
-                    <td><div class="day-circle">THU</div></td>
-                    <td class="t-core"><div class="card"><span class="subject">Comp Networks</span><span class="room-tag">ICT 224</span></div></td>
-                    <td class="t-core"><div class="card"><span class="subject">Web App</span><span class="room-tag">ICT 106</span></div></td>
-                    <td colspan="2" class="t-lab"><div class="card"><span class="subject">Soft Engg Lab</span><span class="room-tag">ICT 203</span></div></td>
-                    <td class="t-oe"><div class="card"><span class="subject">ML Techniques</span><span class="room-tag">ICT 112</span></div></td>
-                    <td><div class="empty-card"></div></td>
-                    <td><div class="empty-card"></div></td>
-                    <td><div class="empty-card"></div></td>
-                    <td><div class="empty-card"></div></td>
-                </tr>
-                <tr data-day="Friday">
-                    <td><div class="day-circle">FRI</div></td>
-                    <td colspan="2" class="t-lab"><div class="card"><span class="subject">Comp Net. Lab</span><span class="room-tag">ICT 314</span></div></td>
-                    <td class="t-core"><div class="card"><span class="subject">Soft Engg</span><span class="room-tag">ICT 107</span></div></td>
-                    <td class="t-elec"><div class="card"><span class="subject">AR & VR</span><span class="room-tag">ICT 111</span></div></td>
-                    <td class="t-oe"><div class="card"><span class="subject">ML Techniques</span><span class="room-tag">ICT 112</span></div></td>
-                    <td><div class="empty-card"></div></td>
-                    <td><div class="empty-card"></div></td>
-                    <td><div class="empty-card"></div></td>
-                    <td><div class="empty-card"></div></td>
-                </tr>
-            </tbody>
-        </table>
+  <div id="profile-alpha" class="profile-section">
+    <div class="grid-wrap">
+    <table>
+      <colgroup>
+        <col class="day-col">
+        <col span="9">
+      </colgroup>
+      <thead>
+        <tr>
+          <th class="corner">Day / Time</th>
+          <th><span class="t">8&ndash;9</span><span class="ap">AM</span></th>
+          <th><span class="t">9&ndash;10</span><span class="ap">AM</span></th>
+          <th><span class="t">10&ndash;11</span><span class="ap">AM</span></th>
+          <th><span class="t">11&ndash;12</span><span class="ap">PM</span></th>
+          <th><span class="t">12&ndash;1</span><span class="ap">PM</span></th>
+          <th><span class="t">1&ndash;2</span><span class="ap">PM</span></th>
+          <th><span class="t">2&ndash;3</span><span class="ap">PM</span></th>
+          <th><span class="t">3&ndash;4</span><span class="ap">PM</span></th>
+          <th><span class="t">4&ndash;5</span><span class="ap">PM</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="day">Monday</td>
+          <td class="cell s-comm" colspan="2"><div class="chip"><div class="subj">App. Comm. (GCGC)</div><div class="loc">ICT &middot; 227</div></div></td>
+          <td class="cell s-web" colspan="2"><div class="chip"><span class="tag">LAB</span><div class="subj">Web App Lab</div><div class="loc">ICT &middot; 104</div></div></td>
+          <td class="cell s-pi"><div class="chip"><div class="subj">Raspberry PI</div><div class="loc">ICT &middot; 417</div></div></td>
+          <td class="lunch" rowspan="5"><span>Lunch Break</span></td>
+          <td class="cell s-cn"><div class="chip"><div class="subj">Comp Networks</div><div class="loc">ICT &middot; 224</div></div></td>
+          <td class="empty"></td>
+          <td class="empty"></td>
+        </tr>
+        <tr>
+          <td class="day">Tuesday</td>
+          <td class="cell s-web"><div class="chip"><div class="subj">Web App</div><div class="loc">ICT &middot; 106</div></div></td>
+          <td class="cell s-se"><div class="chip"><div class="subj">Soft Engg</div><div class="loc">ICT &middot; 107</div></div></td>
+          <td class="cell s-arvr"><div class="chip"><div class="subj">AR &amp; VR</div><div class="loc">ICT &middot; 111</div></div></td>
+          <td class="cell s-cn"><div class="chip"><div class="subj">Comp Networks</div><div class="loc">ICT &middot; 224</div></div></td>
+          <td class="cell s-pi"><div class="chip"><div class="subj">Raspberry PI</div><div class="loc">ICT &middot; 417</div></div></td>
+          <td class="cell s-ml" colspan="2"><div class="chip"><span class="tag">LAB</span><div class="subj">ML Lab</div><div class="loc">ICT &middot; 214</div></div></td>
+          <td class="empty"></td>
+        </tr>
+        <tr>
+          <td class="day">Wednesday</td>
+          <td class="cell s-se" colspan="2"><div class="chip"><span class="tag">LAB</span><div class="subj">Soft Engg Lab</div><div class="loc">ICT &middot; 203</div></div></td>
+          <td class="cell s-arvr" colspan="2"><div class="chip"><span class="tag">LAB</span><div class="subj">AR &amp; VR Lab</div><div class="loc">ICT &middot; 213</div></div></td>
+          <td class="cell s-pi"><div class="chip"><div class="subj">Raspberry PI</div><div class="loc">ICT &middot; 417</div></div></td>
+          <td class="cell s-web"><div class="chip"><div class="subj">Web App</div><div class="loc">ICT &middot; 106</div></div></td>
+          <td class="cell s-arvr"><div class="chip"><div class="subj">AR &amp; VR</div><div class="loc">ICT &middot; 111</div></div></td>
+          <td class="empty"></td>
+        </tr>
+        <tr>
+          <td class="day">Thursday</td>
+          <td class="cell s-cn"><div class="chip"><div class="subj">Comp Networks</div><div class="loc">ICT &middot; 224</div></div></td>
+          <td class="cell s-web"><div class="chip"><div class="subj">Web App</div><div class="loc">ICT &middot; 106</div></div></td>
+          <td class="cell s-se" colspan="2"><div class="chip"><span class="tag">LAB</span><div class="subj">Soft Engg Lab</div><div class="loc">ICT &middot; 103</div></div></td>
+          <td class="cell s-ml"><div class="chip"><div class="subj">ML Techniques</div><div class="loc">ICT &middot; 112</div></div></td>
+          <td class="empty"></td>
+          <td class="empty"></td>
+          <td class="empty"></td>
+        </tr>
+        <tr>
+          <td class="day">Friday</td>
+          <td class="cell s-cn" colspan="2"><div class="chip"><span class="tag">LAB</span><div class="subj">Comp Net. Lab</div><div class="loc">ICT &middot; 314</div></div></td>
+          <td class="cell s-se"><div class="chip"><div class="subj">Soft Engg</div><div class="loc">ICT &middot; 107</div></div></td>
+          <td class="cell s-arvr"><div class="chip"><div class="subj">AR &amp; VR</div><div class="loc">ICT &middot; 111</div></div></td>
+          <td class="cell s-ml"><div class="chip"><div class="subj">ML Techniques</div><div class="loc">ICT &middot; 112</div></div></td>
+          <td class="empty"></td>
+          <td class="empty"></td>
+          <td class="empty"></td>
+        </tr>
+      </tbody>
+    </table>
     </div>
 
-    <script>
-        const headers = {
-            'omega': '<tr><th></th><th>08:40 - 09:30</th><th>09:30 - 10:20</th><th>10:20 - 11:10</th><th>11:10 - 12:00</th><th>12:00 - 12:50</th><th>12:50 - 01:40</th><th>01:40 - 02:30</th><th>02:30 - 03:20</th></tr>',
-            'alpha': '<tr><th></th><th>08:00 - 09:00</th><th>09:00 - 10:00</th><th>10:00 - 11:00</th><th>11:00 - 12:00</th><th>12:00 - 01:00</th><th>01:00 - 02:00</th><th>02:00 - 03:00</th><th>03:00 - 04:00</th><th>04:00 - 05:00</th></tr>'
-        };
+    <div class="mobile">
+      <div class="m-day">
+        <h3 class="m-dayname">Monday</h3>
+        <div class="m-list">
+          <div class="m-row s-comm"><div class="m-time">8&ndash;10 AM</div><div class="m-chip"><div class="subj">App. Comm. (GCGC)</div><div class="loc">ICT &middot; 227</div></div></div>
+          <div class="m-row s-web"><div class="m-time">10 AM&ndash;12 PM</div><div class="m-chip"><span class="tag">LAB</span><div class="subj">Web App Lab</div><div class="loc">ICT &middot; 104</div></div></div>
+          <div class="m-row s-pi"><div class="m-time">12&ndash;1 PM</div><div class="m-chip"><div class="subj">Raspberry PI</div><div class="loc">ICT &middot; 417</div></div></div>
+          <div class="m-lunch">Lunch Break &middot; 1&ndash;2 PM</div>
+          <div class="m-row s-cn"><div class="m-time">2&ndash;3 PM</div><div class="m-chip"><div class="subj">Comp Networks</div><div class="loc">ICT &middot; 224</div></div></div>
+        </div>
+      </div>
+      <div class="m-day">
+        <h3 class="m-dayname">Tuesday</h3>
+        <div class="m-list">
+          <div class="m-row s-web"><div class="m-time">8&ndash;9 AM</div><div class="m-chip"><div class="subj">Web App</div><div class="loc">ICT &middot; 106</div></div></div>
+          <div class="m-row s-se"><div class="m-time">9&ndash;10 AM</div><div class="m-chip"><div class="subj">Soft Engg</div><div class="loc">ICT &middot; 107</div></div></div>
+          <div class="m-row s-arvr"><div class="m-time">10&ndash;11 AM</div><div class="m-chip"><div class="subj">AR &amp; VR</div><div class="loc">ICT &middot; 111</div></div></div>
+          <div class="m-row s-cn"><div class="m-time">11 AM&ndash;12 PM</div><div class="m-chip"><div class="subj">Comp Networks</div><div class="loc">ICT &middot; 224</div></div></div>
+          <div class="m-row s-pi"><div class="m-time">12&ndash;1 PM</div><div class="m-chip"><div class="subj">Raspberry PI</div><div class="loc">ICT &middot; 417</div></div></div>
+          <div class="m-lunch">Lunch Break &middot; 1&ndash;2 PM</div>
+          <div class="m-row s-ml"><div class="m-time">2&ndash;4 PM</div><div class="m-chip"><span class="tag">LAB</span><div class="subj">ML Lab</div><div class="loc">ICT &middot; 214</div></div></div>
+        </div>
+      </div>
+      <div class="m-day">
+        <h3 class="m-dayname">Wednesday</h3>
+        <div class="m-list">
+          <div class="m-row s-se"><div class="m-time">8&ndash;10 AM</div><div class="m-chip"><span class="tag">LAB</span><div class="subj">Soft Engg Lab</div><div class="loc">ICT &middot; 203</div></div></div>
+          <div class="m-row s-arvr"><div class="m-time">10 AM&ndash;12 PM</div><div class="m-chip"><span class="tag">LAB</span><div class="subj">AR &amp; VR Lab</div><div class="loc">ICT &middot; 213</div></div></div>
+          <div class="m-row s-pi"><div class="m-time">12&ndash;1 PM</div><div class="m-chip"><div class="subj">Raspberry PI</div><div class="loc">ICT &middot; 417</div></div></div>
+          <div class="m-lunch">Lunch Break &middot; 1&ndash;2 PM</div>
+          <div class="m-row s-web"><div class="m-time">2&ndash;3 PM</div><div class="m-chip"><div class="subj">Web App</div><div class="loc">ICT &middot; 106</div></div></div>
+          <div class="m-row s-arvr"><div class="m-time">3&ndash;4 PM</div><div class="m-chip"><div class="subj">AR &amp; VR</div><div class="loc">ICT &middot; 111</div></div></div>
+        </div>
+      </div>
+      <div class="m-day">
+        <h3 class="m-dayname">Thursday</h3>
+        <div class="m-list">
+          <div class="m-row s-cn"><div class="m-time">8&ndash;9 AM</div><div class="m-chip"><div class="subj">Comp Networks</div><div class="loc">ICT &middot; 224</div></div></div>
+          <div class="m-row s-web"><div class="m-time">9&ndash;10 AM</div><div class="m-chip"><div class="subj">Web App</div><div class="loc">ICT &middot; 106</div></div></div>
+          <div class="m-row s-se"><div class="m-time">10 AM&ndash;12 PM</div><div class="m-chip"><span class="tag">LAB</span><div class="subj">Soft Engg Lab</div><div class="loc">ICT &middot; 103</div></div></div>
+          <div class="m-row s-ml"><div class="m-time">12&ndash;1 PM</div><div class="m-chip"><div class="subj">ML Techniques</div><div class="loc">ICT &middot; 112</div></div></div>
+        </div>
+      </div>
+      <div class="m-day">
+        <h3 class="m-dayname">Friday</h3>
+        <div class="m-list">
+          <div class="m-row s-cn"><div class="m-time">8&ndash;10 AM</div><div class="m-chip"><span class="tag">LAB</span><div class="subj">Comp Net. Lab</div><div class="loc">ICT &middot; 314</div></div></div>
+          <div class="m-row s-se"><div class="m-time">10&ndash;11 AM</div><div class="m-chip"><div class="subj">Soft Engg</div><div class="loc">ICT &middot; 107</div></div></div>
+          <div class="m-row s-arvr"><div class="m-time">11 AM&ndash;12 PM</div><div class="m-chip"><div class="subj">AR &amp; VR</div><div class="loc">ICT &middot; 111</div></div></div>
+          <div class="m-row s-ml"><div class="m-time">12&ndash;1 PM</div><div class="m-chip"><div class="subj">ML Techniques</div><div class="loc">ICT &middot; 112</div></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
 
-        function setProfile(profile) {
-            localStorage.setItem('timetableProfileV4', profile);
 
-            // Update Body Class for Theme Switch
-            document.body.className = 'theme-' + profile;
+  <div id="profile-omega" class="profile-section">
+    <div class="grid-wrap">
+    <table>
+      <colgroup>
+        <col class="day-col">
+        <col span="8">
+      </colgroup>
+      <thead>
+        <tr>
+          <th class="corner">Day / Time</th>
+          <th><span class="t">8:40&ndash;9:30</span><span class="ap">AM</span></th>
+          <th><span class="t">9:30&ndash;10:20</span><span class="ap">AM</span></th>
+          <th><span class="t">10:20&ndash;11:10</span><span class="ap">AM</span></th>
+          <th><span class="t">11:10&ndash;12:00</span><span class="ap">PM</span></th>
+          <th><span class="t">12:00&ndash;12:50</span><span class="ap">PM</span></th>
+          <th><span class="t">12:50&ndash;1:40</span><span class="ap">PM</span></th>
+          <th><span class="t">1:40&ndash;2:30</span><span class="ap">PM</span></th>
+          <th><span class="t">2:30&ndash;3:20</span><span class="ap">PM</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="day">Monday</td>
+          <td class="cell s-o-core"><div class="chip no-link"><div class="subj">Microwave Engg</div><div class="loc">B1 &middot; 203</div></div></td>
+          <td class="cell s-o-core"><div class="chip no-link"><div class="subj">Comp. Comm (CCN)</div><div class="loc">B1 &middot; 203</div></div></td>
+          <td class="cell s-o-elec"><div class="chip no-link"><div class="subj">Elec. Measure (EMI)</div><div class="loc">B1 &middot; 102</div></div></td>
+          <td class="lunch" rowspan="5"><span>Lunch Break</span></td>
+          <td class="cell s-o-math"><div class="chip no-link"><div class="subj">Microprocessors</div><div class="loc">B1 &middot; 203</div></div></td>
+          <td class="cell s-o-oe"><div class="chip no-link"><div class="subj">Const. of India</div><div class="loc">B1 &middot; 203</div></div></td>
+          <td class="cell s-o-oe"><div class="chip no-link"><div class="subj">Library</div></div></td>
+          <td class="cell s-o-oe"><div class="chip no-link"><div class="subj">Sports</div></div></td>
+        </tr>
+        <tr>
+          <td class="day">Tuesday</td>
+          <td class="cell s-o-math"><div class="chip no-link"><div class="subj">Microprocessors</div><div class="loc">B1 &middot; 203</div></div></td>
+          <td class="cell s-o-core"><div class="chip no-link"><div class="subj">Comp. Comm (CCN)</div><div class="loc">B1 &middot; 203</div></div></td>
+          <td class="cell s-o-core"><div class="chip no-link"><div class="subj">Microwave Engg</div><div class="loc">B1 &middot; 203</div></div></td>
+          <td class="cell s-o-lab" colspan="3"><div class="chip no-link"><span class="tag">LAB</span><div class="subj">Networking Lab</div><div class="loc">B2 &middot; 303</div></div></td>
+          <td class="cell s-o-elec"><div class="chip no-link"><div class="subj">Elec. Measure (EMI)</div><div class="loc">B1 &middot; 102</div></div></td>
+        </tr>
+        <tr>
+          <td class="day">Wednesday</td>
+          <td class="cell s-o-elec"><div class="chip no-link"><div class="subj">Elec. Measure (EMI)</div><div class="loc">B1 &middot; 102</div></div></td>
+          <td class="cell s-o-lab" colspan="3"><div class="chip no-link"><span class="tag">LAB</span><div class="subj">Micro/Microwave Lab</div><div class="loc">B2 &middot; 304</div></div></td>
+          <td class="cell s-o-core"><div class="chip no-link"><div class="subj">Comp. Comm (CCN)</div><div class="loc">B1 &middot; 203</div></div></td>
+          <td class="cell s-o-math"><div class="chip no-link"><div class="subj">Microprocessors</div><div class="loc">B1 &middot; 203</div></div></td>
+          <td class="cell s-o-oe"><div class="chip no-link"><div class="subj">Open Elective-II</div></div></td>
+        </tr>
+        <tr>
+          <td class="day">Thursday</td>
+          <td class="cell s-o-elec"><div class="chip no-link"><div class="subj">Elec. Measure (EMI)</div><div class="loc">B1 &middot; 102</div></div></td>
+          <td class="cell s-o-math"><div class="chip no-link"><div class="subj">Microprocessors</div><div class="loc">B1 &middot; 203</div></div></td>
+          <td class="cell s-o-core"><div class="chip no-link"><div class="subj">Microwave Engg</div><div class="loc">B1 &middot; 203</div></div></td>
+          <td class="cell s-o-lab" colspan="3"><div class="chip no-link"><span class="tag">LAB</span><div class="subj">Micro/Microwave Lab</div><div class="loc">B1 &middot; 303</div></div></td>
+          <td class="cell s-o-oe"><div class="chip no-link"><div class="subj">Open Elective-II</div></div></td>
+        </tr>
+        <tr>
+          <td class="day">Friday</td>
+          <td class="cell s-o-oe"><div class="chip no-link"><div class="subj">Const. of India</div><div class="loc">B1 &middot; 203</div></div></td>
+          <td class="cell s-o-core"><div class="chip no-link"><div class="subj">Microwave Engg</div><div class="loc">B1 &middot; 203</div></div></td>
+          <td class="cell s-o-core"><div class="chip no-link"><div class="subj">Comp. Comm (CCN)</div><div class="loc">B1 &middot; 203</div></div></td>
+          <td class="cell s-o-lab" colspan="3"><div class="chip no-link"><span class="tag">LAB</span><div class="subj">Soft Skills Lab</div><div class="loc">B6 &middot; 303</div></div></td>
+          <td class="cell s-o-oe"><div class="chip no-link"><div class="subj">Open Elective-II</div></div></td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
 
-            // Toggle Buttons
-            document.querySelectorAll('.toggle-btn').forEach(btn => btn.classList.remove('active'));
-            document.getElementById('btn-' + profile).classList.add('active');
+    <div class="mobile">
+      <div class="m-day">
+        <h3 class="m-dayname">Monday</h3>
+        <div class="m-list">
+          <div class="m-row s-o-core no-link"><div class="m-time">8:40&ndash;9:30 AM</div><div class="m-chip"><div class="subj">Microwave Engg</div><div class="loc">B1 &middot; 203</div></div></div>
+          <div class="m-row s-o-core no-link"><div class="m-time">9:30&ndash;10:20 AM</div><div class="m-chip"><div class="subj">Comp. Comm (CCN)</div><div class="loc">B1 &middot; 203</div></div></div>
+          <div class="m-row s-o-elec no-link"><div class="m-time">10:20&ndash;11:10 AM</div><div class="m-chip"><div class="subj">Elec. Measure (EMI)</div><div class="loc">B1 &middot; 102</div></div></div>
+          <div class="m-lunch">Lunch Break &middot; 11:10&ndash;12:00 PM</div>
+          <div class="m-row s-o-math no-link"><div class="m-time">12:00&ndash;12:50 PM</div><div class="m-chip"><div class="subj">Microprocessors</div><div class="loc">B1 &middot; 203</div></div></div>
+          <div class="m-row s-o-oe no-link"><div class="m-time">12:50&ndash;1:40 PM</div><div class="m-chip"><div class="subj">Const. of India</div><div class="loc">B1 &middot; 203</div></div></div>
+          <div class="m-row s-o-oe no-link"><div class="m-time">1:40&ndash;2:30 PM</div><div class="m-chip"><div class="subj">Library</div></div></div>
+          <div class="m-row s-o-oe no-link"><div class="m-time">2:30&ndash;3:20 PM</div><div class="m-chip"><div class="subj">Sports</div></div></div>
+        </div>
+      </div>
+      <div class="m-day">
+        <h3 class="m-dayname">Tuesday</h3>
+        <div class="m-list">
+          <div class="m-row s-o-math no-link"><div class="m-time">8:40&ndash;9:30 AM</div><div class="m-chip"><div class="subj">Microprocessors</div><div class="loc">B1 &middot; 203</div></div></div>
+          <div class="m-row s-o-core no-link"><div class="m-time">9:30&ndash;10:20 AM</div><div class="m-chip"><div class="subj">Comp. Comm (CCN)</div><div class="loc">B1 &middot; 203</div></div></div>
+          <div class="m-row s-o-core no-link"><div class="m-time">10:20&ndash;11:10 AM</div><div class="m-chip"><div class="subj">Microwave Engg</div><div class="loc">B1 &middot; 203</div></div></div>
+          <div class="m-lunch">Lunch Break &middot; 11:10&ndash;12:00 PM</div>
+          <div class="m-row s-o-lab no-link"><div class="m-time">12:00&ndash;2:30 PM</div><div class="m-chip"><span class="tag">LAB</span><div class="subj">Networking Lab</div><div class="loc">B2 &middot; 303</div></div></div>
+          <div class="m-row s-o-elec no-link"><div class="m-time">2:30&ndash;3:20 PM</div><div class="m-chip"><div class="subj">Elec. Measure (EMI)</div><div class="loc">B1 &middot; 102</div></div></div>
+        </div>
+      </div>
+      <div class="m-day">
+        <h3 class="m-dayname">Wednesday</h3>
+        <div class="m-list">
+          <div class="m-row s-o-elec no-link"><div class="m-time">8:40&ndash;9:30 AM</div><div class="m-chip"><div class="subj">Elec. Measure (EMI)</div><div class="loc">B1 &middot; 102</div></div></div>
+          <div class="m-row s-o-lab no-link"><div class="m-time">9:30&ndash;12:00 PM</div><div class="m-chip"><span class="tag">LAB</span><div class="subj">Micro/Microwave Lab</div><div class="loc">B2 &middot; 304</div></div></div>
+          <div class="m-lunch">Lunch Break &middot; 12:00&ndash;12:50 PM</div>
+          <div class="m-row s-o-core no-link"><div class="m-time">12:50&ndash;1:40 PM</div><div class="m-chip"><div class="subj">Comp. Comm (CCN)</div><div class="loc">B1 &middot; 203</div></div></div>
+          <div class="m-row s-o-math no-link"><div class="m-time">1:40&ndash;2:30 PM</div><div class="m-chip"><div class="subj">Microprocessors</div><div class="loc">B1 &middot; 203</div></div></div>
+          <div class="m-row s-o-oe no-link"><div class="m-time">2:30&ndash;3:20 PM</div><div class="m-chip"><div class="subj">Open Elective-II</div></div></div>
+        </div>
+      </div>
+      <div class="m-day">
+        <h3 class="m-dayname">Thursday</h3>
+        <div class="m-list">
+          <div class="m-row s-o-elec no-link"><div class="m-time">8:40&ndash;9:30 AM</div><div class="m-chip"><div class="subj">Elec. Measure (EMI)</div><div class="loc">B1 &middot; 102</div></div></div>
+          <div class="m-row s-o-math no-link"><div class="m-time">9:30&ndash;10:20 AM</div><div class="m-chip"><div class="subj">Microprocessors</div><div class="loc">B1 &middot; 203</div></div></div>
+          <div class="m-row s-o-core no-link"><div class="m-time">10:20&ndash;11:10 AM</div><div class="m-chip"><div class="subj">Microwave Engg</div><div class="loc">B1 &middot; 203</div></div></div>
+          <div class="m-lunch">Lunch Break &middot; 11:10&ndash;12:00 PM</div>
+          <div class="m-row s-o-lab no-link"><div class="m-time">12:00&ndash;2:30 PM</div><div class="m-chip"><span class="tag">LAB</span><div class="subj">Micro/Microwave Lab</div><div class="loc">B1 &middot; 303</div></div></div>
+          <div class="m-row s-o-oe no-link"><div class="m-time">2:30&ndash;3:20 PM</div><div class="m-chip"><div class="subj">Open Elective-II</div></div></div>
+        </div>
+      </div>
+      <div class="m-day">
+        <h3 class="m-dayname">Friday</h3>
+        <div class="m-list">
+          <div class="m-row s-o-oe no-link"><div class="m-time">8:40&ndash;9:30 AM</div><div class="m-chip"><div class="subj">Const. of India</div><div class="loc">B1 &middot; 203</div></div></div>
+          <div class="m-row s-o-core no-link"><div class="m-time">9:30&ndash;10:20 AM</div><div class="m-chip"><div class="subj">Microwave Engg</div><div class="loc">B1 &middot; 203</div></div></div>
+          <div class="m-row s-o-core no-link"><div class="m-time">10:20&ndash;11:10 AM</div><div class="m-chip"><div class="subj">Comp. Comm (CCN)</div><div class="loc">B1 &middot; 203</div></div></div>
+          <div class="m-lunch">Lunch Break &middot; 11:10&ndash;12:00 PM</div>
+          <div class="m-row s-o-lab no-link"><div class="m-time">12:00&ndash;2:30 PM</div><div class="m-chip"><span class="tag">LAB</span><div class="subj">Soft Skills Lab</div><div class="loc">B6 &middot; 303</div></div></div>
+          <div class="m-row s-o-oe no-link"><div class="m-time">2:30&ndash;3:20 PM</div><div class="m-chip"><div class="subj">Open Elective-II</div></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
-            // Swap Table Body
-            document.querySelectorAll('.schedule-body').forEach(tbody => tbody.classList.remove('active-view'));
-            document.getElementById('schedule-' + profile).classList.add('active-view');
+<div class="cm-overlay" id="courseModal" aria-hidden="true">
+  <div class="cm-card" id="cmCard" role="dialog" aria-modal="true" aria-labelledby="cmName">
+    <button class="cm-close" data-cm-close aria-label="Close">&times;</button>
+    <div id="cmBody"></div>
+  </div>
+</div>
 
-            // Swap Headers
-            document.getElementById('time-headers').innerHTML = headers[profile];
-        }
+<script>
+(function(){
+  var b = document.body;
+  var viewBtn    = document.getElementById('viewBtn');
+  var viewIcon   = document.getElementById('viewIcon');
+  var viewLabel  = document.getElementById('viewLabel');
+  
+  var themeBtn   = document.getElementById('themeBtn');
+  var themeIcon  = document.getElementById('themeIcon');
+  var themeLabel = document.getElementById('themeLabel');
 
-        document.addEventListener('DOMContentLoaded', () => {
-            const savedProfile = localStorage.getItem('timetableProfileV4') || 'omega';
-            setProfile(savedProfile);
+  var profileBtn   = document.getElementById('profileBtn');
+  var profileIcon  = document.getElementById('profileIcon');
+  var profileLabel = document.getElementById('profileLabel');
 
-            const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-            const todayName = days[new Date().getDay()];
-            const dateOptions = { weekday: 'long', month: 'short', day: 'numeric' };
-            document.getElementById('currentDate').textContent = new Date().toLocaleDateString('en-US', dateOptions);
+  /* defaults */
+  var defaultView  = window.matchMedia('(min-width:821px)').matches ? 'grid' : 'list';
+  var curView    = localStorage.getItem('tt-view')  || defaultView;
+  var curTheme   = localStorage.getItem('tt-theme') || 'B';
+  var curProfile = localStorage.getItem('tt-profile') || 'alpha';
 
-            document.querySelectorAll('tr[data-day]').forEach(row => {
-                if(row.getAttribute('data-day') === todayName) {
-                    row.classList.add('active-day');
-                    if(window.innerWidth < 1000) {
-                        setTimeout(() => row.scrollIntoView({ behavior: 'smooth', block: 'center' }), 250);
-                    }
-                }
-            });
-        });
-    </script>
+  /* Update states */
+  function updateViewBtn(v){
+    if(v === 'grid'){
+      viewIcon.textContent  = '⊞';
+      viewLabel.textContent = 'Grid';
+      viewBtn.classList.add('active');
+      viewBtn.setAttribute('aria-pressed','true');
+    } else {
+      viewIcon.textContent  = '☰';
+      viewLabel.textContent = 'List';
+      viewBtn.classList.remove('active');
+      viewBtn.setAttribute('aria-pressed','false');
+    }
+  }
+
+  function updateThemeBtn(t){
+    if(t === 'B'){
+      themeIcon.textContent  = '◆';
+      themeLabel.textContent = 'Bold';
+      themeBtn.classList.add('active');
+      themeBtn.setAttribute('aria-pressed','true');
+    } else {
+      themeIcon.textContent  = '○';
+      themeLabel.textContent = 'Soft';
+      themeBtn.classList.remove('active');
+      themeBtn.setAttribute('aria-pressed','false');
+    }
+  }
+
+  function updateProfileBtn(p){
+    if(p === 'alpha'){
+      profileIcon.textContent  = 'α';
+      profileLabel.textContent = 'Alpha';
+      profileBtn.classList.remove('active');
+      profileBtn.setAttribute('aria-pressed','false');
+    } else {
+      profileIcon.textContent  = 'Ω';
+      profileLabel.textContent = 'Omega';
+      profileBtn.classList.add('active');
+      profileBtn.setAttribute('aria-pressed','true');
+    }
+  }
+
+  function applyView(v){
+    curView = v;
+    b.setAttribute('data-view', v);
+    updateViewBtn(v);
+    try{ localStorage.setItem('tt-view', v); }catch(e){}
+  }
+
+  function applyTheme(t){
+    curTheme = t;
+    b.setAttribute('data-theme', t);
+    updateThemeBtn(t);
+    try{ localStorage.setItem('tt-theme', t); }catch(e){}
+  }
+
+  function applyProfile(p){
+    curProfile = p;
+    b.setAttribute('data-profile', p);
+    updateProfileBtn(p);
+    try{ localStorage.setItem('tt-profile', p); }catch(e){}
+  }
+
+  /* init */
+  applyTheme(curTheme);
+  applyView(curView);
+  applyProfile(curProfile);
+
+  /* click handlers */
+  viewBtn.addEventListener('click', function(){ applyView(curView === 'grid' ? 'list' : 'grid'); });
+  themeBtn.addEventListener('click', function(){ applyTheme(curTheme === 'B' ? 'A' : 'B'); });
+  profileBtn.addEventListener('click', function(){ applyProfile(curProfile === 'alpha' ? 'omega' : 'alpha'); });
+})();
+
+/* ============ COURSE DETAIL POPUP ============ */
+(function(){
+  var COURSES = {
+    comm:{ name:"Applied Communication & Quantitative Skills", code:"GCGC1021", faculty:"GCGC Faculty 7", credits:"1", category:"University Core (UC)", room:"ICT 227", syllabus:"https://drive.google.com/file/d/1LjVwCsNA_zC5Uckcl0mN6l5UY81PwSNi/view" },
+    web:{  name:"Web Application Frameworks", code:"24CSEN2131", faculty:"Madhuri Namballa", credits:"4 (lab)", category:"Programme Core &mdash; Track 6 (SE)", room:"ICT 106 &middot; ICT 104 (Lab)", syllabus:"https://drive.google.com/file/d/1S-eW2IIMkmcHB2LXRbDEyLVfhPao5GOe/view" },
+    pi:{   name:"Raspberry Pi for Beginners", code:"24EECE1041", faculty:"Kondamudi Sri Chandan", credits:"3", category:"Open Elective (OE)", room:"ICT 417", syllabus:"https://drive.google.com/file/d/1VrQljjjHlfVngAPbYEADy5ANdwUkBnNn/view" },
+    cn:{   name:"Computer Networks", code:"24CSEN2041", faculty:"Banavathu Sridevi", credits:"4 (lab)", category:"Programme Core &mdash; Standard", room:"ICT 224 &middot; ICT 314 (Lab)", syllabus:"https://drive.google.com/file/d/1Kmv2QNxUfLu0Oi3KdQiLXttPJvTrOh-s/view" },
+    se:{   name:"Software Engineering", code:"24CSEN1021", faculty:"Konala Thammi Reddy", credits:"4 (lab)", category:"Programme Core &mdash; Track 6 (SE)", room:"ICT 107 &middot; ICT 103 (Lab) &middot; ICT 203 (Lab)", syllabus:"https://drive.google.com/file/d/1fE6NgotdV-t9jz5-7Z5Kqst8-XT0xfJm/view" },
+    arvr:{ name:"Introduction to Augmented & Virtual Reality", code:"24CSEN2251", faculty:"Kranthi Kiran M", credits:"4 (lab)", category:"Programme Elective (PE)", room:"ICT 111 &middot; ICT 213 (Lab)", syllabus:"https://drive.google.com/file/d/1YWwK0HcXunMr2Zmf5bMAKVG8bld9wMgi/view" },
+    ml:{   name:"Machine Learning Techniques", code:"24CSEN2311", faculty:"Sekharamantry Praveen Kumar", credits:"3 (lab)", category:"Open Elective (OE)", room:"ICT 112 &middot; ICT 214 (Lab)", syllabus:"https://drive.google.com/file/d/1gyeAKm_rsp3WpNVz-vDo4RMzCrxcx2qG/view" }
+  };
+  var ICON={
+    person:'<svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.6"/><path d="M5 20c0-3.6 3.1-5.6 7-5.6s7 2 7 5.6"/></svg>',
+    credits:'<svg viewBox="0 0 24 24"><circle cx="12" cy="9" r="5"/><path d="M9.2 13.4 8 21l4-2.4L16 21l-1.2-7.6"/></svg>',
+    room:'<svg viewBox="0 0 24 24"><path d="M12 21s6.4-5.7 6.4-10.4A6.4 6.4 0 1 0 5.6 10.6C5.6 15.3 12 21 12 21z"/><circle cx="12" cy="10.4" r="2.3"/></svg>',
+    arrow:'<svg viewBox="0 0 24 24"><path d="M5 12h13M13 6l6 6-6 6"/></svg>'
+  };
+  var modal=document.getElementById('courseModal'), card=document.getElementById('cmCard'), body=document.getElementById('cmBody');
+
+  function keyFrom(el){ var m=(el&&el.className||'').match(/s-(cn|arvr|comm|se|web|ml|pi)/); return m?m[1]:null; }
+  function metaRow(icon,label,val){ return '<div class="cm-row"><div class="cm-ic">'+icon+'</div><div><div class="lab">'+label+'</div><div class="val">'+val+'</div></div></div>'; }
+
+  function open(key){
+    var c=COURSES[key]; if(!c) return;
+    card.className='cm-card s-'+key;
+    var cta = c.syllabus
+      ? '<a class="cm-cta live" href="'+c.syllabus+'" target="_blank" rel="noopener">View syllabus '+ICON.arrow+'</a>'
+      : '<span class="cm-cta disabled">Syllabus coming soon</span>';
+    body.innerHTML =
+      '<div class="cm-hero">'+
+        '<span class="cm-pill">'+c.code+'</span>'+
+        '<h2 class="cm-title" id="cmName">'+c.name+'</h2>'+
+        '<div class="cm-cat">'+c.category+'</div>'+
+      '</div>'+
+      '<div class="cm-meta">'+
+        metaRow(ICON.person,'Faculty',c.faculty)+
+        metaRow(ICON.credits,'Credits',c.credits)+
+        metaRow(ICON.room,'Room',c.room)+
+      '</div>'+
+      '<div class="cm-foot">'+cta+'</div>';
+    modal.classList.add('open'); modal.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden';
+  }
+  function close(){ modal.classList.remove('open'); modal.setAttribute('aria-hidden','true'); document.body.style.overflow=''; }
+
+  document.addEventListener('click', function(e){
+    if(e.target===modal || e.target.closest('[data-cm-close]')){ close(); return; }
+    var hit=e.target.closest('.chip:not(.no-link), .m-row:not(.no-link)'); if(!hit) return;
+    var container = hit.classList.contains('m-row') ? hit : hit.closest('td');
+    var key=keyFrom(container); if(key) open(key);
+  });
+  document.addEventListener('keydown', function(e){ if(e.key==='Escape') close(); });
+})();
+</script>
 </body>
 </html>
